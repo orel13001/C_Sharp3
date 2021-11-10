@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace MailSenderConsole
 {
     class Program
-    {
+    {                         
         static string pass = "gfhfcrfltrf3ajbbz";
         static void Main(string[] args)
         {
@@ -18,10 +18,10 @@ namespace MailSenderConsole
 
             //авторизуемся на smtp-сервере и отправляем письмо
 
-            SmtpClient sc = new SmtpClient("smtp.yandex.ru", 25);
+            SmtpClient sc = new SmtpClient("smtp.yandex.ru", 587);
             sc.EnableSsl = true;
             sc.DeliveryMethod = SmtpDeliveryMethod.Network;
-            sc.Credentials = new NetworkCredential("orel13001@yandex.ru", pass);
+            sc.Credentials = new NetworkCredential(@"orel13001@yandex.ru", pass);
 
             try
             {
@@ -29,7 +29,7 @@ namespace MailSenderConsole
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("Невозможно отправить письмо" + ex.ToString());
+                Debug.WriteLine("Невозможно отправить письмо " + ex.ToString());
             }
         }
     }
