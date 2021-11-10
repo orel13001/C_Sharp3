@@ -7,7 +7,7 @@ namespace MailSenderConsole
 {
     class Program
     {                         
-        static string pass = "gfhfcrfltrf3ajbbz";
+        static string pass = "***********";
         static void Main(string[] args)
         {
             //создаём письмо
