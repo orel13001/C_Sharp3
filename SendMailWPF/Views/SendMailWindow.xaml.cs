@@ -14,8 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net;
 using System.Net.Mail;
+using SendMailWPF.ConstData;
 
-namespace SendMailWPF
+namespace SendMailWPF.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -32,27 +33,31 @@ namespace SendMailWPF
             string pass = pswdBox.Password;
 
             //создаём письмо
-            using (MailMessage mm = new MailMessage(@"orel13001@yandex.ru", @"orel13001@yandex.ru"))
+            using (MailMessage mm = new MailMessage(ConstParametrForMail.MailFrom, @"orel13001@yandex.ru"))
             {
                 mm.Subject = "Title massage";
                 mm.Body = "Body message.\n Bla-bla-bla!!!";
                 mm.IsBodyHtml = false;
 
                 //авторизуемся на smtp-сервере и отправляем письмо
-                using (SmtpClient sc = new SmtpClient("smtp.yandex.ru", 587))
+                using (SmtpClient sc = new SmtpClient(ConstParametrForMail.SMTP_Server, ConstParametrForMail.Port))
                 {
                     sc.EnableSsl = true;
                     sc.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    sc.Credentials = new NetworkCredential(@"orel13001@yandex.ru", pass);
-
+                    sc.Credentials = new NetworkCredential(ConstParametrForMail.LoginSMTP, pass);
+                    SendEndWindow sew = new SendEndWindow();
                     try
                     {
                         sc.Send(mm);
-                        MessageBox.Show("Письмо отправлено");
+                        sew.lblSendEnd.Content = "Письмо отправлено";
+                        sew.ShowDialog();
+
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Невозможно отправить письмо " + ex.ToString());
+                        sew.lblSendEnd.Content = "Невозможно отправить письмо " + ex.ToString();
+                        sew.ShowDialog();
+
                     } 
                 } 
             }

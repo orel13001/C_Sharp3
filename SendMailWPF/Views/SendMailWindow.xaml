@@ -1,15 +1,23 @@
-﻿<Window x:Class="SendMailWPF.SendMailWindow"
+﻿<Window x:Class="SendMailWPF.Views.SendMailWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SendMailWPF"
+        xmlns:local="clr-namespace:SendMailWPF.Views"
         mc:Ignorable="d"
         Title="SendMail" Height="234" Width="444">
+    <!--<Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>-->
     <StackPanel>
         <Button x:Name="btnSendMail"
                 Content="Send eMail"
-                Margin="5" Click="btnSendMail_Click"/>
+                Margin="5" Click="btnSendMail_Click" Height="25">            
+        </Button>
         <PasswordBox x:Name="pswdBox"
                      Margin="5"
                      PasswordChar="*"/>
