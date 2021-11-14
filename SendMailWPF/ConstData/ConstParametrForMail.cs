@@ -12,6 +12,9 @@ namespace SendMailWPF.ConstData
         public static int Port { get => 587; }
         public static string MailFrom { get => @"orel13001@yandex.ru"; }
         public static string LoginSMTP { get => @"orel13001@yandex.ru"; }
+        public static string SuccessSend { get => @"Письмо отправлено!"; }
+        public static string BadSend { get => @"Ошибка отправки письма!"; }
+
 
     }
 }

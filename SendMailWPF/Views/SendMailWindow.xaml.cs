@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Net;
 using System.Net.Mail;
 using SendMailWPF.ConstData;
+using SendMailWPF.Logic;
 
 namespace SendMailWPF.Views
 {
@@ -30,38 +31,29 @@ namespace SendMailWPF.Views
 
         private void btnSendMail_Click(object sender, RoutedEventArgs e)
         {
-            string pass = pswdBox.Password;
 
-            //создаём письмо
-            using (MailMessage mm = new MailMessage(ConstParametrForMail.MailFrom, @"orel13001@yandex.ru"))
+            EmailWork email = new EmailWork(pswdBox.Password);
+
+            email.CreateEmail(To.Text, Title.Text, BodyMail.Text);
+            SendEndWindow sew = new SendEndWindow();
+            try
             {
-                mm.Subject = "Title massage";
-                mm.Body = "Body message.\n Bla-bla-bla!!!";
-                mm.IsBodyHtml = false;
-
-                //авторизуемся на smtp-сервере и отправляем письмо
-                using (SmtpClient sc = new SmtpClient(ConstParametrForMail.SMTP_Server, ConstParametrForMail.Port))
+                if (email.SendEmail())
                 {
-                    sc.EnableSsl = true;
-                    sc.DeliveryMethod = SmtpDeliveryMethod.Network;
-                    sc.Credentials = new NetworkCredential(ConstParametrForMail.LoginSMTP, pass);
-                    SendEndWindow sew = new SendEndWindow();
-                    try
-                    {
-                        sc.Send(mm);
-                        sew.lblSendEnd.Content = "Письмо отправлено";
-                        sew.ShowDialog();
-
-                    }
-                    catch (Exception ex)
-                    {
-                        sew.lblSendEnd.Content = "Невозможно отправить письмо " + ex.ToString();
-                        sew.ShowDialog();
-
-                    } 
-                } 
+                    sew.lblSendEnd.Content = ConstParametrForMail.SuccessSend;
+                }
+                else
+                {
+                    sew.lblSendEnd.Content = ConstParametrForMail.BadSend;
+                }
+                sew.ShowDialog();
             }
-            
+            catch (Exception ex)
+            {
+                sew.lblSendEnd.Content = ConstParametrForMail.SuccessSend + ex.ToString();
+                sew.ShowDialog();
+            }
+
         }
     }
 }
