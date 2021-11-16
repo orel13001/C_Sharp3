@@ -6,66 +6,74 @@
         xmlns:local="clr-namespace:SendMailWPF.Views"
         mc:Ignorable="d"
         Title="SendMail" Height="489" Width="444">
-    <!--<Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>-->
 
+    <TabControl x:Name="tcSendMail">
+        <TabItem
+            Header="Отправка сообщения">
+            <Grid Margin="5"                  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="8*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
 
-
-
-
-
-
-
-
-
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="8*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
-
-        <TextBlock Text="Кому:" VerticalAlignment="Center" 
+                <TextBlock Text="Кому:" VerticalAlignment="Center" 
                        Grid.Column="0" Grid.Row="0" Margin="5"/>
-        <TextBox x:Name="To" VerticalAlignment="Center"
-                     Height="40"
+                <TextBox x:Name="To" VerticalAlignment="Center"
+                     Height="35"
                      Grid.Column="1" Grid.Row="0" Margin="5"/>
 
-        <TextBlock Text="Тема:"  VerticalAlignment="Center"
+                <TextBlock Text="Тема:"  VerticalAlignment="Center"
                            Grid.Column="0" Grid.Row="1" Margin="5"/>
-        <TextBox x:Name="Title" VerticalAlignment="Center"
-                         Height="40"
+                <TextBox x:Name="Title" VerticalAlignment="Center"
+                         Height="35"
                          Grid.Column="1" Grid.Row="1" Margin="5"/>
 
-        <TextBlock Text="Текст сообщения:" VerticalAlignment="Center"
+                <TextBlock Text="Текст сообщения:" VerticalAlignment="Center"
                        TextWrapping="Wrap"
                        Grid.Column="0" Grid.Row="2"
                        Height="auto" Width="auto" Margin="5"/>
-        <TextBox x:Name="BodyMail" VerticalAlignment="Center"
+                <TextBox x:Name="BodyMail" VerticalAlignment="Center"
                  TextWrapping="WrapWithOverflow"                 
                  Width="auto"
-                 Grid.Row="2" Grid.Column="1" Margin="5,0,5,0" Height="243"/>
-        <TextBlock Text="Пароль сервера:" VerticalAlignment="Center"
+                 Grid.Row="2" Grid.Column="1" Margin="5,0,5,0" Height="230"/>
+                <TextBlock Text="Пароль сервера:" VerticalAlignment="Center"
                            TextWrapping="WrapWithOverflow"
                            Grid.Column="0" Grid.Row="3" Margin="5"/>
-        <PasswordBox x:Name="pswdBox"
+                <PasswordBox x:Name="pswdBox"
                          Grid.Column="1" Grid.Row="3"
                          PasswordChar="*" Margin="5"/>
-        <Button x:Name="btnSendMail"
+                <Button x:Name="btnSendMail"
                             Content="Send eMail"
                             Margin="5" Click="btnSendMail_Click" Height="25"
                             Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2">
-        </Button>
-    </Grid>
+                </Button>
+            </Grid>
+        </TabItem>
+
+        <TabItem Header="TestControl">
+            
+        </TabItem>
+
+        <TabItem Header="Reserve">
+            
+        </TabItem>
+    </TabControl>
+
+
+
+
+
+
+
+
+
+
+    
 </Window>
