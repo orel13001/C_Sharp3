@@ -1,0 +1,14 @@
+<UserControl x:Class="LibControls.PrevNextButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LibControls"
+             mc:Ignorable="d" 
+             x:Name="root">
+    <DockPanel>
+        <Button x:Name="btnPrev" DockPanel.Dock="Left" Content="Prev"/>
+        <Button x:Name="btnNext" DockPanel.Dock="Right" Content="Next" Margin="5,0,0,0"/>
+
+    </DockPanel> 
+</UserControl>
