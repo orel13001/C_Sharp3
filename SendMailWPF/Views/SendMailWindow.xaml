@@ -6,17 +6,22 @@
         xmlns:local="clr-namespace:SendMailWPF.Views"
         xmlns:LibControls="clr-namespace:LibControls;assembly=LibControls" x:Class="SendMailWPF.Views.SendMailWindow"
         mc:Ignorable="d"
-        Title="SendMail" Height="489" Width="444">
+        Title="SendMail" MinHeight="550" MinWidth="444"
+        Height="550" Width="444">
 
     <DockPanel>
         <LibControls:PrevNextButton
+            x:Name="PrevNextButton"
             DockPanel.Dock="Top" HorizontalAlignment="Left"
+            PrevBtnClick="PrevNextButton_PrevBtnClick"
+            NextBtnClick="PrevNextButton_NextBtnClick"
             Margin="5"/>
 
-        <TabControl x:Name="tcSendMail">
+        <TabControl x:Name="tcSendMail"
+                    SelectionChanged="tcSendMail_SelectionChanged">
             <TabItem
                 Header="Отправка сообщения">
-                <Grid Margin="5"                  >
+                <Grid Margin="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*"/>
                         <ColumnDefinition Width="8*"/>

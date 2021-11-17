@@ -24,10 +24,46 @@ namespace SendMailWPF.Views
     /// </summary>
     public partial class SendMailWindow : Window
     {
+        private int ActiveTabItem { get => tcSendMail.SelectedIndex; }
+        private string PrevTabItem
+        {
+            get 
+            {
+                if (ActiveTabItem <= 0)
+                {
+                    return "";
+                }
+                else
+                {
+                    return $" {ActiveTabItem - 1}";
+                }
+            }
+        }
+
+        private string NextTabItem
+        {
+            get
+            {
+                if (ActiveTabItem >= tcSendMail.Items.Count-1)
+                {
+                    return "";
+                }
+                else
+                {
+                    return $" {ActiveTabItem + 1}";
+                }
+            }
+        }
+
+
         public SendMailWindow()
         {
             InitializeComponent();
+            SetBtnName();
+
         }
+
+        
 
         private void btnSendMail_Click(object sender, RoutedEventArgs e)
         {
@@ -54,6 +90,44 @@ namespace SendMailWPF.Views
                 sew.ShowDialog();
             }
 
+        }
+
+        private void tcSendMail_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SetBtnName();
+        }
+
+        private void SetBtnName()
+        {
+            PrevNextButton.PrevBtnName = "Prev" + PrevTabItem;
+            PrevNextButton.NextBtnName = "Next" + NextTabItem;
+        }
+
+        //private void PrevNextButton_PrevBtnClick(object sender, EventArgs e)
+        //{
+            
+             
+        //}
+
+        //private void PrevNextButton_NextBtnClick(object sender, EventArgs e)
+        //{
+            
+        //}
+
+        private void PrevNextButton_PrevBtnClick(object sender, RoutedEventArgs e)
+        {
+            if (tcSendMail.SelectedIndex >= 0)
+            {
+                tcSendMail.SelectedIndex--;
+            }
+        }
+
+        private void PrevNextButton_NextBtnClick(object sender, RoutedEventArgs e)
+        {
+            if (tcSendMail.SelectedIndex <= tcSendMail.Items.Count - 1)
+            {
+                tcSendMail.SelectedIndex++;
+            }
         }
     }
 }

@@ -8,7 +8,15 @@
              x:Name="root" d:DesignWidth="106.333">
     <StackPanel Orientation="Horizontal" MaxHeight="25" MaxWidth="110"
                 MinHeight="25" MinWidth="110">
-        <Button x:Name="btnPrev" Content="Prev" Width="50"/>
-        <Button x:Name="btnNext" Content="Next" Margin="5,0,0,0" Width="50"/>
+        <Button x:Name="btnPrev" 
+                Content="{Binding ElementName=root, Path=PrevBtnName}" 
+                Width="50" 
+                Click="btnPrev_Click"/>
+        <Button x:Name="btnNext" 
+                Content="{Binding ElementName=root, Path=NextBtnName}" 
+                Margin="5,0,0,0" 
+                Width="50" Click="btnNext_Click"/>
+        
+        
     </StackPanel> 
 </UserControl>
