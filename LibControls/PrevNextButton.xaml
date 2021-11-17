@@ -5,10 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LibControls"
              mc:Ignorable="d" 
-             x:Name="root">
-    <DockPanel>
-        <Button x:Name="btnPrev" DockPanel.Dock="Left" Content="Prev"/>
-        <Button x:Name="btnNext" DockPanel.Dock="Right" Content="Next" Margin="5,0,0,0"/>
-
-    </DockPanel> 
+             x:Name="root" d:DesignWidth="106.333">
+    <StackPanel Orientation="Horizontal" MaxHeight="25" MaxWidth="110"
+                MinHeight="25" MinWidth="110">
+        <Button x:Name="btnPrev" Content="Prev" Width="50"/>
+        <Button x:Name="btnNext" Content="Next" Margin="5,0,0,0" Width="50"/>
+    </StackPanel> 
 </UserControl>
