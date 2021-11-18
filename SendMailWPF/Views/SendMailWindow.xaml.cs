@@ -24,10 +24,17 @@ namespace SendMailWPF.Views
     /// </summary>
     public partial class SendMailWindow : Window
     {
+        #region Свойства класса
+        /// <summary>
+        /// получение номера активной вкладки
+        /// </summary>
         private int ActiveTabItem { get => tcSendMail.SelectedIndex; }
+        /// <summary>
+        /// получение номера предыдущей вкладки
+        /// </summary>
         private string PrevTabItem
         {
-            get 
+            get
             {
                 if (ActiveTabItem <= 0)
                 {
@@ -39,12 +46,14 @@ namespace SendMailWPF.Views
                 }
             }
         }
-
+        /// <summary>
+        /// получение номера следующей вкладки
+        /// </summary>
         private string NextTabItem
         {
             get
             {
-                if (ActiveTabItem >= tcSendMail.Items.Count-1)
+                if (ActiveTabItem >= tcSendMail.Items.Count - 1)
                 {
                     return "";
                 }
@@ -55,6 +64,7 @@ namespace SendMailWPF.Views
             }
         }
 
+        #endregion
 
         public SendMailWindow()
         {
@@ -63,7 +73,8 @@ namespace SendMailWPF.Views
 
         }
 
-        
+
+        #region Методы обработчиков событий
 
         private void btnSendMail_Click(object sender, RoutedEventArgs e)
         {
@@ -97,31 +108,6 @@ namespace SendMailWPF.Views
             SetBtnName();
         }
 
-        private void SetBtnName()
-        {
-            PrevNextButton.PrevBtnName = "Prev" + PrevTabItem;
-            PrevNextButton.NextBtnName = "Next" + NextTabItem;
-        }
-
-        //private void PrevNextButton_PrevBtnClick(object sender, EventArgs e)
-        //{
-            
-             
-        //}
-
-        //private void PrevNextButton_NextBtnClick(object sender, EventArgs e)
-        //{
-            
-        //}
-
-        private void PrevNextButton_PrevBtnClick(object sender, RoutedEventArgs e)
-        {
-            if (tcSendMail.SelectedIndex >= 0)
-            {
-                tcSendMail.SelectedIndex--;
-            }
-        }
-
         private void PrevNextButton_NextBtnClick(object sender, RoutedEventArgs e)
         {
             if (tcSendMail.SelectedIndex <= tcSendMail.Items.Count - 1)
@@ -129,5 +115,21 @@ namespace SendMailWPF.Views
                 tcSendMail.SelectedIndex++;
             }
         }
+        private void PrevNextButton_PrevBtnClick(object sender, RoutedEventArgs e)
+        {
+            if (tcSendMail.SelectedIndex >= 0)
+            {
+                tcSendMail.SelectedIndex--;
+            }
+        } 
+        #endregion
+
+        #region Вспомогатеьлные меотды
+        private void SetBtnName()
+        {
+            PrevNextButton.PrevBtnName = "Prev" + PrevTabItem;
+            PrevNextButton.NextBtnName = "Next" + NextTabItem;
+        }
+        #endregion
     }
 }

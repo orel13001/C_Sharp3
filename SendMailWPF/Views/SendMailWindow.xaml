@@ -14,7 +14,7 @@
             x:Name="PrevNextButton"
             DockPanel.Dock="Top" HorizontalAlignment="Left"
             PrevBtnClick="PrevNextButton_PrevBtnClick"
-            NextBtnClick="PrevNextButton_NextBtnClick"
+            NextBtnClick="PrevNextButton_NextBtnClick"            
             Margin="5"/>
 
         <TabControl x:Name="tcSendMail"
