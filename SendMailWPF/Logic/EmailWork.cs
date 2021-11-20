@@ -51,7 +51,10 @@ namespace SendMailWPF.Logic
                     return false;
                 }
             }
-        }                
+        }
+        
+
+        
                     
     }
 }

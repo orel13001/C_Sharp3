@@ -4,10 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SendMailWPF.Views"
+        xmlns:vm ="clr-namespace:SendMailWPF.ViewModels"
         xmlns:LibControls="clr-namespace:LibControls;assembly=LibControls" x:Class="SendMailWPF.Views.SendMailWindow"
         mc:Ignorable="d"
         Title="SendMail" MinHeight="550" MinWidth="444"
         Height="550" Width="444">
+    <Window.DataContext>
+        <vm:SendMailViewModel/>
+    </Window.DataContext>
 
     <DockPanel>
         <LibControls:PrevNextButton
@@ -19,7 +23,23 @@
 
         <TabControl x:Name="tcSendMail"
                     SelectionChanged="tcSendMail_SelectionChanged">
+            <TabItem IsSelected="True" Header="Доступ">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Логин" Margin="5,5,5,0"/>
+                    <TextBox x:Name="AccessLogin" Margin="5,0,5,5"
+                             Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Пароль" Margin="5,0,5,5"/>
+                    <TextBox x:Name="AccessPassword"
+                             Margin="5,0,5,5"
+                             Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button x:Name="btnLogin" 
+                            Content="Log In"
+                            Margin="5,0,5,5"
+                            Command="{Binding AccessCommand}"/>
+                </StackPanel>
+            </TabItem>
             <TabItem
+                IsEnabled="{Binding IsAccess, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Header="Отправка сообщения">
                 <Grid Margin="5">
                     <Grid.ColumnDefinitions>
@@ -67,12 +87,16 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="TestControl" >
+            <TabItem Header="TestControl" 
+                     IsEnabled="{Binding IsAccess, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     >
 
             </TabItem>
 
 
-            <TabItem Header="Reserve"/>
+            <TabItem Header="Reserve"
+                IsEnabled="{Binding IsAccess, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     />
         </TabControl>
     </DockPanel>
 
