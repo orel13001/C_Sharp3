@@ -26,12 +26,20 @@ namespace SendMailWPF.Logic
             Pass_SMTP = pass;
         }
 
-        public void CreateEmail(string To, string Title, string Body)
+        public bool CreateEmail(string To, string Title, string Body)
         {
-            Message = new MailMessage(mailFrom, To);
-            Message.Subject = Title;
-            Message.Body = Body;
-            Message.IsBodyHtml = false;
+            try
+            {
+                Message = new MailMessage(mailFrom, To);
+                Message.Subject = Title;
+                Message.Body = Body;
+                Message.IsBodyHtml = false;
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool SendEmail()

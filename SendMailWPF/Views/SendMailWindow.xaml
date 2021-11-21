@@ -22,7 +22,9 @@
             Margin="5"/>
 
         <TabControl x:Name="tcSendMail"
-                    SelectionChanged="tcSendMail_SelectionChanged">
+                    
+                    
+                    SelectedIndex="{Binding ActiveTabIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <TabItem IsSelected="True" Header="Доступ">
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Логин" Margin="5,5,5,0"/>
@@ -58,13 +60,15 @@
                            Grid.Column="0" Grid.Row="0" Margin="5"/>
                     <TextBox x:Name="To" VerticalAlignment="Center"
                          Height="35"
-                         Grid.Column="1" Grid.Row="0" Margin="5"/>
+                         Grid.Column="1" Grid.Row="0" Margin="5"
+                         Text="{Binding MailTo, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Тема:"  VerticalAlignment="Center"
                                Grid.Column="0" Grid.Row="1" Margin="5"/>
                     <TextBox x:Name="Title" VerticalAlignment="Center"
                              Height="35"
-                             Grid.Column="1" Grid.Row="1" Margin="5"/>
+                             Grid.Column="1" Grid.Row="1" Margin="5"
+                             Text="{Binding MailTitle, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Текст сообщения:" VerticalAlignment="Center"
                            TextWrapping="Wrap"
@@ -73,17 +77,20 @@
                     <TextBox x:Name="BodyMail" VerticalAlignment="Center"
                      TextWrapping="WrapWithOverflow"                 
                      Width="auto"
-                     Grid.Row="2" Grid.Column="1" Margin="5,0,5,0" Height="230"/>
+                     Grid.Row="2" Grid.Column="1" Margin="5,0,5,0" Height="230"
+                     Text="{Binding MailMessage, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
                     <TextBlock Text="Пароль сервера:" VerticalAlignment="Center"
                                TextWrapping="WrapWithOverflow"
                                Grid.Column="0" Grid.Row="3" Margin="5"/>
-                    <PasswordBox x:Name="pswdBox"
+                    <LibControls:BindablePasswordBox x:Name="pswdBox"
                              Grid.Column="1" Grid.Row="3"
-                             PasswordChar="*" Margin="5"/>
+                             Margin="5"
+                             Password="{Binding MailPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"                        />
                     <Button x:Name="btnSendMail"
                                 Content="Send eMail"
-                                Margin="5" Click="btnSendMail_Click" Height="25"
-                                Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"/>
+                                Margin="5"  Height="25"
+                                Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                            Command="{Binding SendMailCommand}"/>
                 </Grid>
             </TabItem>
 
