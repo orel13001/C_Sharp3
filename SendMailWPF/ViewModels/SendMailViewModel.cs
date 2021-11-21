@@ -12,8 +12,10 @@ using System.Windows.Data;
 namespace SendMailWPF.ViewModels
 {
     internal class SendMailViewModel : INotifyPropertyChanged
-    {
+    {       
+
         private bool isAccess = false;
+
         private int activeTabIndex = 0;
         public bool IsAccess
         {
@@ -24,6 +26,8 @@ namespace SendMailWPF.ViewModels
                 OnPropertyChanged("isAccess");
             }
         } 
+
+        public int TabCount { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string MailTo { get; set; }  
@@ -43,43 +47,10 @@ namespace SendMailWPF.ViewModels
             }
         }
 
-        private string PrevTabItem
-        {
-            get
-            {
-                if (ActiveTabIndex <= 0)
-                {
-                    return "";
-                }
-                else
-                {
-                    return $" {ActiveTabIndex - 1}";
-                }
-            }
-        }
-        /// <summary>
-        /// получение номера следующей вкладки
-        /// </summary>
-        private string NextTabItem
-        {
-            get
-            {
-                if (ActiveTabIndex >= 3)
-                {
-                    return "";
-                }
-                else
-                {
-                    return $" {ActiveTabIndex + 1}";
-                }
-            }
-        }
-
-
         public ICommand AccessCommand => new BaseCommand(LoginAccessExecute);
         public ICommand SendMailCommand => new BaseCommand(SendMailExecute, SendMailExecuted);
-
-
+        public ICommand PrevBtnCommand => new BaseCommand(PrevBtnExecute, PrevBtnExecuted);
+        public ICommand NextBtnCommand => new BaseCommand(NextBtnExecute, NextBtnExecuted);
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -103,7 +74,6 @@ namespace SendMailWPF.ViewModels
 
         private void SendMailExecute(object obj)
         {
-
             EmailWork email = new EmailWork(MailPassword);
 
             SendEndWindow sew = new SendEndWindow();
@@ -132,6 +102,22 @@ namespace SendMailWPF.ViewModels
             return (MailPassword != "" && MailPassword != null) && (MailTo != "" && MailTo != null);
         }
 
+        private void PrevBtnExecute(object obj)
+        {
+            --ActiveTabIndex;
+        }
+        private bool PrevBtnExecuted(object arg)
+        {
+            return ActiveTabIndex > 0 && IsAccess;
+        }
+        private void NextBtnExecute(object obj)
+        {
+            ++ActiveTabIndex;
+        }
+        private bool NextBtnExecuted(object arg)
+        {
+            return true && IsAccess;
+        }
 
     }
 }

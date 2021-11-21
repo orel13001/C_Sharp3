@@ -14,15 +14,24 @@
     </Window.DataContext>
 
     <DockPanel>
-        <LibControls:PrevNextButton
-            x:Name="PrevNextButton"
-            DockPanel.Dock="Top" HorizontalAlignment="Left"
-            PrevBtnClick="PrevNextButton_PrevBtnClick"
-            NextBtnClick="PrevNextButton_NextBtnClick"            
-            Margin="5"/>
+        <StackPanel Orientation="Horizontal" MaxHeight="25" MaxWidth="110"
+                MinHeight="25" MinWidth="110"
+                    DockPanel.Dock="Top"
+                    HorizontalAlignment="Left"
+                    Margin="5">
+        <Button x:Name="btnPrev" 
+                Width="50" 
+                Command="{Binding PrevBtnCommand}"
+                Content="Prev"/>
+        <Button x:Name="btnNext" 
+                Margin="5,0,0,0" 
+                Width="50" 
+                Command="{Binding NextBtnCommand}"
+                Content="Next"/>        
+        
+    </StackPanel>
 
         <TabControl x:Name="tcSendMail"
-                    
                     
                     SelectedIndex="{Binding ActiveTabIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <TabItem IsSelected="True" Header="Доступ">
@@ -85,7 +94,7 @@
                     <LibControls:BindablePasswordBox x:Name="pswdBox"
                              Grid.Column="1" Grid.Row="3"
                              Margin="5"
-                             Password="{Binding MailPassword, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"                        />
+                             Password="{Binding MailPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                        />
                     <Button x:Name="btnSendMail"
                                 Content="Send eMail"
                                 Margin="5"  Height="25"
