@@ -4,11 +4,13 @@ using System.Text;
 
 namespace SendMailWPF.Logic
 {
-    internal static class AccessProgramm
+    public static class AccessProgramm
     {
+        private static string pass = "admin";
         public static bool IsAccessProgramm(string login, string password)
         {
-            return (login == "admin" && password == "admin");
+            return (login == "admin" && password == pass.GetHashCode().ToString());
         }
+
     }
 }

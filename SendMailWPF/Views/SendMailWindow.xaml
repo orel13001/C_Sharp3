@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:SendMailWPF.Views"
         xmlns:vm ="clr-namespace:SendMailWPF.ViewModels"
         xmlns:LibControls="clr-namespace:LibControls;assembly=LibControls" x:Class="SendMailWPF.Views.SendMailWindow"
+        xmlns:validRules ="clr-namespace:SendMailWPF.Logic"
         mc:Ignorable="d"
         Title="SendMail" MinHeight="550" MinWidth="444"
         Height="550" Width="444">
@@ -70,7 +71,20 @@
                     <TextBox x:Name="To" VerticalAlignment="Center"
                          Height="35"
                          Grid.Column="1" Grid.Row="0" Margin="5"
-                         Text="{Binding MailTo, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                         TextWrapping="Wrap">
+                        <TextBox.Text>
+                            <Binding Path="MailTo" Mode="TwoWay"
+                                     ValidatesOnDataErrors="True"
+                                     ValidatesOnExceptions="True"
+                                     NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <validRules:DataValidation/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                                     
+                        </TextBox.Text>
+                    </TextBox>           
+                             
 
                     <TextBlock Text="Тема:"  VerticalAlignment="Center"
                                Grid.Column="0" Grid.Row="1" Margin="5"/>

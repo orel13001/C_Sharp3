@@ -9,6 +9,7 @@ using SendMailWPF.ConstData;
 using SendMailWPF.Views;
 using System.Windows.Data;
 
+
 namespace SendMailWPF.ViewModels
 {
     internal class SendMailViewModel : INotifyPropertyChanged
@@ -17,6 +18,7 @@ namespace SendMailWPF.ViewModels
         private bool isAccess = false;
 
         private int activeTabIndex = 0;
+        private string password;
         public bool IsAccess
         {
             get => isAccess;
@@ -29,7 +31,11 @@ namespace SendMailWPF.ViewModels
 
         public int TabCount { get; set; }
         public string Login { get; set; }
-        public string Password { get; set; }
+        public string Password
+        { 
+            get => password;
+            set => password = value; 
+        }
         public string MailTo { get; set; }  
         public string MailTitle { get; set; }
         public string MailMessage { get; set; } 
@@ -62,7 +68,7 @@ namespace SendMailWPF.ViewModels
 
         private void LoginAccessExecute(object obj)
         {
-            if (AccessProgramm.IsAccessProgramm(Login, Password))
+            if (AccessProgramm.IsAccessProgramm(Login, Password.GetHashCode().ToString()))
             {
                 IsAccess = true;
             }
