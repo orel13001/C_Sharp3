@@ -1,0 +1,143 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SendMailWPF.Views"
+        xmlns:vm ="clr-namespace:SendMailWPF.ViewModels"
+        xmlns:LibControls="clr-namespace:LibControls;assembly=LibControls" x:Class="SendMailWPF.Views.SendMailWindow"
+        xmlns:validRules ="clr-namespace:SendMailWPF.Logic"
+        mc:Ignorable="d"
+        Title="SendMail" MinHeight="550" MinWidth="444"
+        Height="550" Width="444">
+    <Window.DataContext>
+        <vm:SendMailViewModel/>
+    </Window.DataContext>
+
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" MaxHeight="25" MaxWidth="110"
+                MinHeight="25" MinWidth="110"
+                    DockPanel.Dock="Top"
+                    HorizontalAlignment="Left"
+                    Margin="5">
+        <Button x:Name="btnPrev" 
+                Width="50" 
+                Command="{Binding PrevBtnCommand}"
+                Content="Prev"/>
+        <Button x:Name="btnNext" 
+                Margin="5,0,0,0" 
+                Width="50" 
+                Command="{Binding NextBtnCommand}"
+                Content="Next"/>        
+        
+    </StackPanel>
+
+        <TabControl x:Name="tcSendMail"
+                    
+                    SelectedIndex="{Binding ActiveTabIndex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <TabItem IsSelected="True" Header="Доступ">
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Логин" Margin="5,5,5,0"/>
+                    <TextBox x:Name="AccessLogin" Margin="5,0,5,5"
+                             Text="{Binding Login, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Пароль" Margin="5,0,5,5"/>
+                    <TextBox x:Name="AccessPassword"
+                             Margin="5,0,5,5"
+                             Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    <Button x:Name="btnLogin" 
+                            Content="Log In"
+                            Margin="5,0,5,5"
+                            Command="{Binding AccessCommand}"/>
+                </StackPanel>
+            </TabItem>
+            <TabItem
+                IsEnabled="{Binding IsAccess, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Header="Отправка сообщения">
+                <Grid Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="8*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="5*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Кому:" VerticalAlignment="Center" 
+                           Grid.Column="0" Grid.Row="0" Margin="5"/>
+                    <TextBox x:Name="To" VerticalAlignment="Center"
+                         Height="35"
+                         Grid.Column="1" Grid.Row="0" Margin="5"
+                         TextWrapping="Wrap">
+                        <TextBox.Text>
+                            <Binding Path="MailTo" Mode="TwoWay"
+                                     ValidatesOnDataErrors="True"
+                                     ValidatesOnExceptions="True"
+                                     NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <validRules:DataValidation/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                                     
+                        </TextBox.Text>
+                    </TextBox>           
+                             
+
+                    <TextBlock Text="Тема:"  VerticalAlignment="Center"
+                               Grid.Column="0" Grid.Row="1" Margin="5"/>
+                    <TextBox x:Name="Title" VerticalAlignment="Center"
+                             Height="35"
+                             Grid.Column="1" Grid.Row="1" Margin="5"
+                             Text="{Binding MailTitle, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Текст сообщения:" VerticalAlignment="Center"
+                           TextWrapping="Wrap"
+                           Grid.Column="0" Grid.Row="2"
+                           Height="auto" Width="auto" Margin="5"/>
+                    <TextBox x:Name="BodyMail" VerticalAlignment="Center"
+                     TextWrapping="WrapWithOverflow"                 
+                     Width="auto"
+                     Grid.Row="2" Grid.Column="1" Margin="5,0,5,0" Height="230"
+                     Text="{Binding MailMessage, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Пароль сервера:" VerticalAlignment="Center"
+                               TextWrapping="WrapWithOverflow"
+                               Grid.Column="0" Grid.Row="3" Margin="5"/>
+                    <LibControls:BindablePasswordBox x:Name="pswdBox"
+                             Grid.Column="1" Grid.Row="3"
+                             Margin="5"
+                             Password="{Binding MailPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"                        />
+                    <Button x:Name="btnSendMail"
+                                Content="Send eMail"
+                                Margin="5"  Height="25"
+                                Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2"
+                            Command="{Binding SendMailCommand}"/>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="TestControl" 
+                     IsEnabled="{Binding IsAccess, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     >
+
+            </TabItem>
+
+
+            <TabItem Header="Reserve"
+                IsEnabled="{Binding IsAccess, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     />
+        </TabControl>
+    </DockPanel>
+
+
+
+
+
+
+
+
+
+
+
+</Window>

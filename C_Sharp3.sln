@@ -1,9 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSenderConsole", "MailSenderConsole\MailSenderConsole.csproj", "{77F20C2E-BEE5-416E-B443-970B571D4A79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MailSenderConsole", "MailSenderConsole\MailSenderConsole.csproj", "{77F20C2E-BEE5-416E-B443-970B571D4A79}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SendMailWPF", "SendMailWPF\SendMailWPF.csproj", "{B65E68C5-29E0-4BBC-B478-CB6D3B3DD45B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibControls", "LibControls\LibControls.csproj", "{2E4D6265-4FC0-43DC-946F-4F1BBE484CA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SendMailWPF.Test", "SendMailWPF.Test\SendMailWPF.Test.csproj", "{D0CD141E-C640-4542-86DE-F41E405190A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{77F20C2E-BEE5-416E-B443-970B571D4A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77F20C2E-BEE5-416E-B443-970B571D4A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77F20C2E-BEE5-416E-B443-970B571D4A79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B65E68C5-29E0-4BBC-B478-CB6D3B3DD45B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B65E68C5-29E0-4BBC-B478-CB6D3B3DD45B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B65E68C5-29E0-4BBC-B478-CB6D3B3DD45B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B65E68C5-29E0-4BBC-B478-CB6D3B3DD45B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E4D6265-4FC0-43DC-946F-4F1BBE484CA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E4D6265-4FC0-43DC-946F-4F1BBE484CA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E4D6265-4FC0-43DC-946F-4F1BBE484CA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E4D6265-4FC0-43DC-946F-4F1BBE484CA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0CD141E-C640-4542-86DE-F41E405190A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0CD141E-C640-4542-86DE-F41E405190A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0CD141E-C640-4542-86DE-F41E405190A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0CD141E-C640-4542-86DE-F41E405190A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
